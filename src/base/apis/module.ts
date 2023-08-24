@@ -6,19 +6,12 @@ import {
   MinLength,
   TransformNumber,
 } from '@roxavn/core/base';
+import { ModuleInfo } from '@roxavn/core/server';
 
 import { baseModule } from '../module.js';
 import { scopes } from '../access.js';
 
-const moduleSource = new ApiSource<{
-  name: string;
-  version: string;
-  author: string;
-  roxavn: Record<string, any>;
-  dependencies?: Record<string, string>;
-  peerDependencies?: Record<string, string>;
-  exports?: Record<string, string>;
-}>([scopes.ModuleInfo], baseModule);
+const moduleSource = new ApiSource<ModuleInfo>([scopes.ModuleInfo], baseModule);
 
 class GetModulesRequest extends ExactProps<GetModulesRequest> {
   @Min(1)
