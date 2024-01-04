@@ -12,7 +12,7 @@ import { serverModule } from '../module.js';
 export class GetModulesApiService extends BaseService {
   async handle(request: InferApiRequest<typeof moduleApi.getMany>) {
     const page = request.page || 1;
-    const pageSize = 20;
+    const pageSize = request.pageSize || 20;
     const start = (page - 1) * pageSize;
 
     return {

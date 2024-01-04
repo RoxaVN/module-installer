@@ -1,10 +1,8 @@
 import {
   ApiSource,
   ExactProps,
-  IsOptional,
-  Min,
   MinLength,
-  TransformNumber,
+  PaginationRequest,
 } from '@roxavn/core/base';
 import { ModuleInfo } from '@roxavn/core/server';
 
@@ -13,12 +11,7 @@ import { scopes } from '../access.js';
 
 const moduleSource = new ApiSource<ModuleInfo>([scopes.ModuleInfo], baseModule);
 
-class GetModulesRequest extends ExactProps<GetModulesRequest> {
-  @Min(1)
-  @TransformNumber()
-  @IsOptional()
-  public readonly page?: number;
-}
+class GetModulesRequest extends PaginationRequest<GetModulesRequest> {}
 
 class RunInstallHookMRequest extends ExactProps<RunInstallHookMRequest> {
   @MinLength(1)
